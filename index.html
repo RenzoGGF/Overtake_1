@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Overtake</title>
+    <title>Overtake - Administración</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Bienvenido a Overtake</h1>
+        <h1>Overtake</h1>
         <nav>
             <button onclick="mostrarFormulario('categorias')">Agregar Categoría</button>
             <button onclick="mostrarFormulario('clientes')">Agregar Cliente</button>
@@ -17,8 +17,15 @@
         </nav>
     </header>
 
+    <section class="tablas">
+        <button onclick="mostrarTabla('categorias')">Ver Categorías</button>
+        <button onclick="mostrarTabla('clientes')">Ver Clientes</button>
+        <button onclick="mostrarTabla('productos')">Ver Productos</button>
+        <button onclick="mostrarTabla('pedidos')">Ver Pedidos</button>
+    </section>
+
     <main id="contenido">
-        <p>Selecciona una opción para agregar datos.</p>
+        <p>Selecciona una opción para ver o agregar datos.</p>
     </main>
 
     <script src="script.js"></script>
