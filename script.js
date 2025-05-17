@@ -1,25 +1,30 @@
+document.querySelectorAll('[data-tabla]').forEach(button => {
+  button.addEventListener('click', () => mostrarTabla(button.dataset.tabla));
+});
+
+document.querySelectorAll('[data-form]').forEach(button => {
+  button.addEventListener('click', () => mostrarFormulario(button.dataset.form));
+});
+
 function mostrarTabla(tabla) {
   const contenido = document.getElementById("contenido");
+  contenido.innerHTML = "<p>Cargando datos...</p>";
 
   fetch(`obtener_tabla.php?tabla=${tabla}`)
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
-      let html = `<h2>${tabla.charAt(0).toUpperCase() + tabla.slice(1)}</h2><table><tr>`;
+      if (!data.length) {
+        contenido.innerHTML = `<p>No hay datos disponibles en "${tabla}".</p>`;
+        return;
+      }
 
-      Object.keys(data[0]).forEach(columna => {
-        html += `<th>${columna}</th>`;
+      let html = `<h2>${tabla}</h2><table><thead><tr>`;
+      Object.keys(data[0]).forEach(col => html += `<th>${col}</th>`);
+      html += `</tr></thead><tbody>`;
+      data.forEach(row => {
+        html += `<tr>${Object.values(row).map(val => `<td>${val}</td>`).join('')}</tr>`;
       });
-      html += `</tr>`;
-
-      data.forEach(fila => {
-        html += `<tr>`;
-        Object.values(fila).forEach(valor => {
-          html += `<td>${valor}</td>`;
-        });
-        html += `</tr>`;
-      });
-
-      html += `</table>`;
+      html += `</tbody></table>`;
       contenido.innerHTML = html;
     })
     .catch(() => contenido.innerHTML = "<p>Error al obtener datos.</p>");
@@ -27,25 +32,41 @@ function mostrarTabla(tabla) {
 
 function mostrarFormulario(tabla) {
   const contenido = document.getElementById("contenido");
-
-  let html = `<h2>Agregar datos a ${tabla.charAt(0).toUpperCase() + tabla.slice(1)}</h2><form id="formulario">`;
-
   const campos = {
-    categorias: ["nombre", "descripcion"],
-    clientes: ["nombre", "email", "telefono", "direccion"],
-    productos: ["nombre", "descripcion", "precio", "stock", "categoria"],
-    pedidos: ["id_cliente", "fecha_pedido", "total", "estado", "id_pago"]
+    categorias: [
+      { name: 'nombre', placeholder: 'Nombre de la categoría' },
+      { name: 'descripcion', placeholder: 'Descripción' }
+    ],
+    clientes: [
+      { name: 'nombre', placeholder: 'Nombre completo' },
+      { name: 'email', placeholder: 'Email', type: 'email' },
+      { name: 'telefono', placeholder: 'Teléfono' },
+      { name: 'direccion', placeholder: 'Dirección' }
+    ],
+    productos: [
+      { name: 'nombre', placeholder: 'Nombre del producto' },
+      { name: 'descripcion', placeholder: 'Descripción' },
+      { name: 'precio', placeholder: 'Precio', type: 'number' },
+      { name: 'stock', placeholder: 'Stock', type: 'number' },
+      { name: 'categoria', placeholder: 'Categoría' }
+    ],
+    pedidos: [
+      { name: 'id_cliente', placeholder: 'ID Cliente', type: 'number' },
+      { name: 'fecha_pedido', placeholder: 'Fecha del pedido', type: 'date' },
+      { name: 'total', placeholder: 'Total', type: 'number' },
+      { name: 'estado', placeholder: 'Estado' },
+      { name: 'id_pago', placeholder: 'ID Método de Pago', type: 'number' }
+    ]
   };
 
-  campos[tabla].forEach(campo => {
-    const tipo = campo.includes("email") ? "email" : campo.includes("fecha") ? "date" : campo.includes("precio") || campo.includes("stock") || campo.includes("id") || campo.includes("total") ? "number" : "text";
-    html += `<input type="${tipo}" name="${campo}" placeholder="${campo.replace(/_/g, ' ').toUpperCase()}" required>`;
+  let html = `<h2>Agregar a ${tabla}</h2><form id="formulario">`;
+  (campos[tabla] || []).forEach(({ name, placeholder, type = 'text' }) => {
+    html += `<input type="${type}" name="${name}" placeholder="${placeholder}" required />`;
   });
-
   html += `<button type="submit">Enviar</button></form>`;
   contenido.innerHTML = html;
 
-  document.getElementById("formulario").addEventListener("submit", (e) => {
+  document.getElementById("formulario").addEventListener("submit", e => {
     e.preventDefault();
     const formData = new FormData(e.target);
     formData.append("tabla", tabla);
@@ -53,7 +74,9 @@ function mostrarFormulario(tabla) {
     fetch("insertar_datos.php", {
       method: "POST",
       body: formData
-    }).then(response => response.text())
-      .then(data => contenido.innerHTML = `<p>${data}</p>`);
+    })
+      .then(res => res.text())
+      .then(msg => contenido.innerHTML = `<p>${msg}</p>`)
+      .catch(() => contenido.innerHTML = `<p>Error al enviar datos.</p>`);
   });
 }
