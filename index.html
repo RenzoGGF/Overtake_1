@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Overtake - Administración</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overtake - Administración</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <header class="main-header">
-        <div class="container">
-            <h1 class="logo">Overtake</h1>
-            <nav class="main-nav">
-                <button class="btn" data-form="categorias">Agregar Categoría</button>
-                <button class="btn" data-form="clientes">Agregar Cliente</button>
-                <button class="btn" data-form="productos">Agregar Producto</button>
-                <button class="btn" data-form="pedidos">Agregar Pedido</button>
-            </nav>
-        </div>
-    </header>
+  <header>
+    <h1>Overtake</h1>
+    <nav>
+      <button data-form="categorias">Agregar Categoría</button>
+      <button data-form="clientes">Agregar Cliente</button>
+      <button data-form="productos">Agregar Producto</button>
+      <button data-form="pedidos">Agregar Pedido</button>
+    </nav>
+  </header>
 
-    <section class="actions container">
-        <button class="btn secondary-btn" data-table="categorias">Ver Categorías</button>
-        <button class="btn secondary-btn" data-table="clientes">Ver Clientes</button>
-        <button class="btn secondary-btn" data-table="productos">Ver Productos</button>
-        <button class="btn secondary-btn" data-table="pedidos">Ver Pedidos</button>
-    </section>
+  <section class="tablas">
+    <button data-tabla="categorias">Ver Categorías</button>
+    <button data-tabla="clientes">Ver Clientes</button>
+    <button data-tabla="productos">Ver Productos</button>
+    <button data-tabla="pedidos">Ver Pedidos</button>
+  </section>
 
-    <main id="content" class="container">
-        <p class="placeholder-text">Selecciona una opción para ver o agregar datos.</p>
-    </main>
+  <main id="contenido">
+    <p>Selecciona una opción para ver o agregar datos.</p>
+  </main>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
