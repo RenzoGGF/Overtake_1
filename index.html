@@ -1,38 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Overtake | Administración</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Overtake - Administración</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
     <h1>Overtake</h1>
     <nav>
-      <ul>
-        <li><button data-form="categorias">+ Categoría</button></li>
-        <li><button data-form="clientes">+ Cliente</button></li>
-        <li><button data-form="productos">+ Producto</button></li>
-        <li><button data-form="pedidos">+ Pedido</button></li>
-      </ul>
+      <button onclick="mostrarFormulario('categorias')">Agregar Categoría</button>
+      <button onclick="mostrarFormulario('clientes')">Agregar Cliente</button>
+      <button onclick="mostrarFormulario('productos')">Agregar Producto</button>
+      <button onclick="mostrarFormulario('pedidos')">Agregar Pedido</button>
     </nav>
   </header>
 
-  <section class="acciones">
-    <button data-tabla="categorias">Ver Categorías</button>
-    <button data-tabla="clientes">Ver Clientes</button>
-    <button data-tabla="productos">Ver Productos</button>
-    <button data-tabla="pedidos">Ver Pedidos</button>
+  <section class="tablas">
+    <button onclick="mostrarTabla('categorias')">Ver Categorías</button>
+    <button onclick="mostrarTabla('clientes')">Ver Clientes</button>
+    <button onclick="mostrarTabla('productos')">Ver Productos</button>
+    <button onclick="mostrarTabla('pedidos')">Ver Pedidos</button>
   </section>
 
   <main id="contenido">
-    <p class="placeholder">Selecciona una opción para comenzar.</p>
+    <p>Selecciona una opción para ver o agregar datos.</p>
   </main>
-
-  <footer>
-    <p>&copy; 2025 Overtake. Todos los derechos reservados.</p>
-  </footer>
 
   <script src="script.js"></script>
 </body>
