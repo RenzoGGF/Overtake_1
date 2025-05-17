@@ -10,12 +10,19 @@
     <header>
         <h1>Overtake</h1>
         <nav>
-            <button data-tabla="categorias">Agregar Categoría</button>
-            <button data-tabla="clientes">Agregar Cliente</button>
-            <button data-tabla="productos">Agregar Producto</button>
-            <button data-tabla="pedidos">Agregar Pedido</button>
+            <button onclick="mostrarFormulario('categorias')">Agregar Categoría</button>
+            <button onclick="mostrarFormulario('clientes')">Agregar Cliente</button>
+            <button onclick="mostrarFormulario('productos')">Agregar Producto</button>
+            <button onclick="mostrarFormulario('pedidos')">Agregar Pedido</button>
         </nav>
     </header>
+
+    <section class="tablas">
+        <button onclick="mostrarTabla('categorias')">Ver Categorías</button>
+        <button onclick="mostrarTabla('clientes')">Ver Clientes</button>
+        <button onclick="mostrarTabla('productos')">Ver Productos</button>
+        <button onclick="mostrarTabla('pedidos')">Ver Pedidos</button>
+    </section>
 
     <main id="contenido">
         <p>Selecciona una opción para ver o agregar datos.</p>
