@@ -3,21 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Overtake - Administración</title>
+  <title>Overtake | Administración</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header>
     <h1>Overtake</h1>
     <nav>
-      <button data-form="categorias">Agregar Categoría</button>
-      <button data-form="clientes">Agregar Cliente</button>
-      <button data-form="productos">Agregar Producto</button>
-      <button data-form="pedidos">Agregar Pedido</button>
+      <ul>
+        <li><button data-form="categorias">+ Categoría</button></li>
+        <li><button data-form="clientes">+ Cliente</button></li>
+        <li><button data-form="productos">+ Producto</button></li>
+        <li><button data-form="pedidos">+ Pedido</button></li>
+      </ul>
     </nav>
   </header>
 
-  <section class="tablas">
+  <section class="acciones">
     <button data-tabla="categorias">Ver Categorías</button>
     <button data-tabla="clientes">Ver Clientes</button>
     <button data-tabla="productos">Ver Productos</button>
@@ -25,8 +27,12 @@
   </section>
 
   <main id="contenido">
-    <p>Selecciona una opción para ver o agregar datos.</p>
+    <p class="placeholder">Selecciona una opción para comenzar.</p>
   </main>
+
+  <footer>
+    <p>&copy; 2025 Overtake. Todos los derechos reservados.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
