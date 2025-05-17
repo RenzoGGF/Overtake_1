@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Overtake - Administración</title>
+    <title>Overtake</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <h1>Overtake</h1>
         <nav>
-            <button onclick="mostrarFormulario('categorias')">Agregar Categoría</button>
-            <button onclick="mostrarFormulario('clientes')">Agregar Cliente</button>
-            <button onclick="mostrarFormulario('productos')">Agregar Producto</button>
-            <button onclick="mostrarFormulario('pedidos')">Agregar Pedido</button>
+            <button data-tabla="categorias">Agregar Categoría</button>
+            <button data-tabla="clientes">Agregar Cliente</button>
+            <button data-tabla="productos">Agregar Producto</button>
+            <button data-tabla="pedidos">Agregar Pedido</button>
         </nav>
     </header>
 
     <section class="tablas">
-        <button onclick="mostrarTabla('categorias')">Ver Categorías</button>
-        <button onclick="mostrarTabla('clientes')">Ver Clientes</button>
-        <button onclick="mostrarTabla('productos')">Ver Productos</button>
-        <button onclick="mostrarTabla('pedidos')">Ver Pedidos</button>
+        <button data-tabla="categorias">Ver Categorías</button>
+        <button data-tabla="clientes">Ver Clientes</button>
+        <button data-tabla="productos">Ver Productos</button>
+        <button data-tabla="pedidos">Ver Pedidos</button>
     </section>
 
     <main id="contenido">
